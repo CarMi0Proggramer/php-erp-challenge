@@ -1,5 +1,6 @@
 import type { InertiaLinkProps } from '@inertiajs/vue3';
 import type { LucideIcon } from 'lucide-vue-next';
+import type { Role } from '@/lib/enums/role';
 
 export type BreadcrumbItem = {
     title: string;
@@ -11,4 +12,8 @@ export type NavItem = {
     href: NonNullable<InertiaLinkProps['href']>;
     icon?: LucideIcon;
     isActive?: boolean;
+};
+
+export type NavItemWithRole = NavItem & {
+    roles?: Role[];
 };

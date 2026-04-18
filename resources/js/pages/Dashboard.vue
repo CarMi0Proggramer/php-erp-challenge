@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
+import { AlertCircleIcon } from 'lucide-vue-next';
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
+import { Alert, AlertTitle } from '@/components/ui/alert';
 import { dashboard } from '@/routes';
 
 defineOptions({
@@ -17,10 +19,13 @@ defineOptions({
 
 <template>
     <Head title="Dashboard" />
-
     <div
         class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4"
     >
+        <Alert v-if="$page.props.flash.error" variant="destructive">
+            <AlertCircleIcon />
+            <AlertTitle>{{ $page.props.flash.error }}</AlertTitle>
+        </Alert>
         <div class="grid auto-rows-min gap-4 md:grid-cols-3">
             <div
                 class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
