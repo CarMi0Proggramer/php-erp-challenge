@@ -21,13 +21,7 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { Role } from '@/lib/enums/role';
-import { dashboard } from '@/routes';
-import {
-    users,
-    // finances,
-    // orders,
-    // products
-} from '@/routes/dashboard';
+import { dashboard, users } from '@/routes';
 import type { NavItem, NavItemWithRole } from '@/types';
 
 const page = usePage();

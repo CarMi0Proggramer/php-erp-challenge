@@ -1,7 +1,7 @@
 import type { Role } from '@/lib/enums/role';
 
 export type User = {
-    id: number;
+    id: string;
     name: string;
     email: string;
     avatar?: string;

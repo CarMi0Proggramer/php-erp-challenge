@@ -180,6 +180,7 @@ return [
     'attributes' => [
         'password' => 'senha',
         'current_password' => 'senha atual',
+        'role' => 'papel',
+        'name' => 'nome',
     ],
-
 ];
