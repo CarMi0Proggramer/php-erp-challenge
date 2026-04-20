@@ -30,16 +30,11 @@ import { UsersTable, UserFormModal, UserDeleteModal } from '@/components/users';
 import { Role } from '@/lib/enums/role';
 import { debounce } from '@/lib/utils';
 import { users as usersRoute } from '@/routes';
-import type { User } from '@/types';
+import type { PaginationInfo, User } from '@/types';
 
 type Props = {
     users: User[];
-    pagination: {
-        perPage: number;
-        total: number;
-        currentPage: number;
-        lastPage: number;
-    };
+    pagination: PaginationInfo;
     filters?: {
         sortBy?: string;
         sortDirection?: string;
