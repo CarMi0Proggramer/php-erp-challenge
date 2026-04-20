@@ -90,7 +90,7 @@ class UsersTest extends TestCase
             ->assertSee('Você não tem permissão para deletar usuários.');
     }
 
-    public function test_can_see_users_list()
+    public function test_can_list_users()
     {
         $user = User::factory()->admin()->create();
         User::factory()->count(3)->create();
