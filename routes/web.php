@@ -10,3 +10,4 @@ Route::inertia('dashboard', 'Dashboard')
 
 require __DIR__.'/settings.php';
 require __DIR__.'/users.php';
+require __DIR__.'/products.php';

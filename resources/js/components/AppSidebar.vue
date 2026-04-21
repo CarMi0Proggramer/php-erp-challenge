@@ -3,7 +3,7 @@ import { Link, usePage } from '@inertiajs/vue3';
 import {
     // ClipboardList,
     // Landmark,
-    // ShoppingBasket,
+    ShoppingBasket,
     LayoutGrid,
     Users,
 } from 'lucide-vue-next';
@@ -21,7 +21,7 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { Role } from '@/lib/enums/role';
-import { dashboard, users } from '@/routes';
+import { dashboard, users, products } from '@/routes';
 import type { NavItem, NavItemWithRole } from '@/types';
 
 const page = usePage();
@@ -39,12 +39,12 @@ const navItemsWithRole: NavItemWithRole[] = [
     //     icon: ClipboardList,
     //     roles: [Role.ADMIN, Role.SELLER],
     // },
-    // {
-    //     title: 'Produtos',
-    //     href: products(),
-    //     icon: ShoppingBasket,
-    //     roles: [Role.ADMIN, Role.OPERATOR],
-    // },
+    {
+        title: 'Produtos',
+        href: products(),
+        icon: ShoppingBasket,
+        roles: [Role.ADMIN, Role.OPERATOR],
+    },
     // {
     //     title: 'Finanças',
     //     href: finances(),
