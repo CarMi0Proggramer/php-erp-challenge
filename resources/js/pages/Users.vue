@@ -4,20 +4,13 @@ import { Head, router, usePage } from '@inertiajs/vue3';
 import { Plus, SearchIcon } from 'lucide-vue-next';
 import { reactive, ref, watch, watchEffect } from 'vue';
 import { toast } from 'vue-sonner';
+import AppPagination from '@/components/AppPagination.vue';
 import { Button } from '@/components/ui/button';
 import {
     InputGroup,
     InputGroupAddon,
     InputGroupInput,
 } from '@/components/ui/input-group';
-import {
-    Pagination,
-    PaginationContent,
-    PaginationNext,
-    PaginationPrevious,
-    PaginationEllipsis,
-    PaginationItem,
-} from '@/components/ui/pagination';
 import {
     Select,
     SelectContent,
@@ -170,33 +163,11 @@ watch(filters, applyFilters);
                 @edit="handleEditUser"
                 @delete="handleDeleteUser"
             />
-            <Pagination
-                class="my-4 justify-center md:justify-end"
-                v-slot="{ page }"
-                :page="pagination.currentPage"
-                :items-per-page="pagination.perPage"
-                :total="pagination.total"
-                :default-page="1"
+            <AppPagination
+                className="my-4 justify-center md:justify-end"
+                :pagination="pagination"
                 @update:page="filters.page = $event"
-            >
-                <PaginationContent
-                    v-slot="{ items }"
-                    class="flex flex-wrap gap-2"
-                >
-                    <PaginationPrevious />
-                    <template v-for="(item, index) in items" :key="index">
-                        <PaginationItem
-                            v-if="item.type === 'page'"
-                            :value="item.value"
-                            :is-active="item.value === page"
-                        >
-                            {{ item.value }}
-                        </PaginationItem>
-                    </template>
-                    <PaginationEllipsis v-if="items.length > 4" :index="4" />
-                    <PaginationNext />
-                </PaginationContent>
-            </Pagination>
+            />
         </div>
         <UserFormModal
             v-model:isOpen="isUserFormModalOpen"
