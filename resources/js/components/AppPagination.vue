@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { HTMLAttributes } from 'vue';
 import {
     Pagination,
     PaginationContent,
@@ -11,7 +12,7 @@ import type { PaginationInfo } from '@/types';
 
 type Props = {
     pagination: PaginationInfo;
-    className?: string;
+    className?: HTMLAttributes['class'];
 };
 
 type Emits = {
