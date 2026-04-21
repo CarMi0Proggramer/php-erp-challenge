@@ -53,10 +53,7 @@ const isUserFormModalOpen = ref<boolean>(false);
 const isUserDeleteModalOpen = ref<boolean>(false);
 const selectedUser = ref<User>();
 const filters = reactive({
-    sortBy: props.filters?.sortBy,
-    sortDirection: props.filters?.sortDirection,
-    role: props.filters?.role,
-    searchTerm: props.filters?.searchTerm,
+    ...props.filters,
     page: props.pagination.currentPage,
 });
 
