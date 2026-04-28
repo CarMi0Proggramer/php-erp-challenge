@@ -70,7 +70,7 @@ class ProductsController extends Controller
         return back()->with('message', 'Produto atualizado com sucesso');
     }
 
-    #[Authorize('destroy', Product::class)]
+    #[Authorize('delete', Product::class)]
     public function destroy(Product $product)
     {
         $product->delete();

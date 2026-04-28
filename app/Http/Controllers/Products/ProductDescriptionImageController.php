@@ -19,7 +19,7 @@ class ProductDescriptionImageController extends Controller
 
         $image = ProductDescriptionImage::create([
             'product_id' => $product->id,
-            'path' => $path
+            'path' => $path,
         ]);
 
         return ['id' => $image->id, 'url' => Storage::url($path)];

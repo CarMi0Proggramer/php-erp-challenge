@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('products', ProductsController::class)
         ->name('index', 'products')
-        ->middlewareFor(['index', 'create', 'edit'], 'role:' . implode(',', [
+        ->middlewareFor(['index', 'create', 'edit'], 'role:'.implode(',', [
             Role::ADMIN->value,
             Role::OPERATOR->value,
         ]));

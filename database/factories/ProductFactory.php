@@ -23,7 +23,7 @@ class ProductFactory extends Factory
             'description' => $this->faker->sentence(),
             'price' => $this->faker->randomFloat(2, 1, 100),
             'stock' => $this->faker->numberBetween(0, 100),
-            'sku' => $this->faker->unique()->bothify('SKU-####'),
+            'sku' => $this->faker->unique()->bothify('SKU-######'),
             'sizes' => $this->faker->randomElements(
                 [
                     ProductSize::S->value,

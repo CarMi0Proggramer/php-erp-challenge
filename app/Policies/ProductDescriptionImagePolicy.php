@@ -28,9 +28,9 @@ class ProductDescriptionImagePolicy
         Product $product,
         ProductDescriptionImage $image
     ) {
-        if (!$user->isAdmin() && !$user->isOperator()) {
+        if (! $user->isAdmin() && ! $user->isOperator()) {
             return Response::deny('Você não tem permissão para deletar imagens de produtos.');
-        };
+        }
 
         if ($product->id !== $image->product_id) {
             return Response::deny('A imagem sendo deletada não corresponde a esse produto.');
