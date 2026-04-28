@@ -59,4 +59,12 @@ class User extends Authenticatable
     {
         return $this->role === Role::ADMIN;
     }
+
+    /**
+     * Determines if the user is operator
+     */
+    public function isOperator(): bool
+    {
+        return $this->role === Role::OPERATOR;
+    }
 }

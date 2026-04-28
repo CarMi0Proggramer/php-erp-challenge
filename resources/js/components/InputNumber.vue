@@ -10,10 +10,6 @@ import {
 
 type Props = {
     id?: string;
-    defaultValue?: number;
-    min?: number;
-    max?: number;
-    step?: number;
     label?: string;
     placeholder?: string;
 };
@@ -22,17 +18,15 @@ type Emits = {
     (event: 'update:modelValue', value: number): void;
 };
 
+defineOptions({ inheritAttrs: false });
 defineProps<Props>();
 defineEmits<Emits>();
 defineModel<number>();
 </script>
 <template>
     <NumberField
+        v-bind="$attrs"
         :id="id"
-        :min="min"
-        :max="max"
-        :step="step"
-        :default-value="defaultValue"
         :model-value="modelValue"
         @update:model-value="$emit('update:modelValue', $event)"
     >

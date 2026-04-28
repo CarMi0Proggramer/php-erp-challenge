@@ -182,5 +182,9 @@ return [
         'current_password' => 'senha atual',
         'role' => 'papel',
         'name' => 'nome',
+        'price' => 'preço',
+        'stock' => 'estoque',
+        'description' => 'descrição',
+        'sizes' => 'tamanhos',
     ],
 ];

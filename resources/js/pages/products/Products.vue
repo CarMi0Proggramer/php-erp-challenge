@@ -26,6 +26,7 @@ import {
 import { ProductSize } from '@/lib/enums/product-size';
 import { debounce } from '@/lib/utils';
 import { products as productsRoute } from '@/routes';
+import productsRoutes from '@/routes/products';
 import type { PaginationInfo, Product } from '@/types';
 
 type Props = {
@@ -85,6 +86,10 @@ const updateSearchTerm = debounce((searchTerm: string) => {
     filters.searchTerm = searchTerm;
     applyFilters();
 }, 300);
+
+function handleEditProduct(product: Product) {
+    router.get(productsRoutes.edit(product.id));
+}
 </script>
 <template>
     <Head title="Products" />
@@ -197,11 +202,11 @@ const updateSearchTerm = debounce((searchTerm: string) => {
                     </PopoverContent>
                 </Popover>
             </div>
-            <Link class="ms-auto">
+            <Link :href="productsRoutes.create()" class="ms-auto">
                 <Button class="w-40"><Plus /> Criar Produto</Button>
             </Link>
         </div>
-        <ProductsTable :products="products" />
+        <ProductsTable :products="products" @edit="handleEditProduct" />
         <AppPagination
             className="my-4 justify-center md:justify-end"
             :pagination="pagination"

@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Http\Requests\Products;
+
+use App\Concerns\ProductValidationRules;
+use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Foundation\Http\FormRequest;
+
+class ProductUpdateRequest extends FormRequest
+{
+    use ProductValidationRules;
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        $productId = $this->route('product')->id;
+
+        return [
+            'name' => $this->nameRules(),
+            'description' => $this->descriptionRules(),
+            'price' => $this->priceRules(),
+            'stock' => $this->stockRules(),
+            'sku' => $this->skuRules($productId),
+            ...$this->sizesRules(),
+        ];
+    }
+}
