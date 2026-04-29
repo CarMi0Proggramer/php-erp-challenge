@@ -20,8 +20,8 @@ trait ProductValidationRules
             'string',
             'max:255',
             $productId === null
-              ? Rule::unique(Product::class, 'sku')
-              : Rule::unique(Product::class, 'sku')->ignore($productId),
+                ? Rule::unique(Product::class, 'sku')
+                : Rule::unique(Product::class, 'sku')->ignore($productId),
         ];
     }
 
@@ -32,7 +32,7 @@ trait ProductValidationRules
 
     public function priceRules()
     {
-        return ['required', 'decimal:2', 'gt:0'];
+        return ['required', 'numeric', 'decimal:0,2', 'gt:0'];
     }
 
     public function stockRules()

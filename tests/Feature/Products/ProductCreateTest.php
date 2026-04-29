@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Feature\Products;
+
 use App\Enums\ProductSize;
 use App\Enums\Role;
 use App\Models\Product;
@@ -62,8 +64,11 @@ class ProductCreateTest extends TestCase
             'sizes' => fake()->randomElements(ProductSize::cases()),
         ];
 
-        $response = $this->actingAs($user)->post(route('products.store'), $payload);
-        $product = Product::query()->where('name', $payload['name'])->first();
+        $response = $this->actingAs($user)
+            ->post(route('products.store'), $payload)
+            ->assertRedirect()
+            ->assertSessionDoesntHaveErrors();
+        $product = Product::query()->latest()->first();
 
         $this->assertNotNull($product);
         $response->assertRedirect(route('products.edit', ['product' => $product]));

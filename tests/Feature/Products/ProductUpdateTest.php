@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Feature\Products;
+
 use App\Enums\Role;
 use App\Models\Product;
 use App\Models\User;
