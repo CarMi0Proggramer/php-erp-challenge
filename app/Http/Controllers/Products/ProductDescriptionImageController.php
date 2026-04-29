@@ -25,10 +25,10 @@ class ProductDescriptionImageController extends Controller
         return ['id' => $image->id, 'url' => Storage::url($path)];
     }
 
-    #[Authorize('delete', ['product', 'description_image'])]
+    #[Authorize('delete', ['description_image', 'product'])]
     public function destroy(Product $product, ProductDescriptionImage $description_image)
     {
-        Storage::delete($description_image->path);
+        Storage::disk('public')->delete($description_image->path);
         $description_image->delete();
 
         return ['message' => 'Imagem deletada com sucesso'];
