@@ -29,7 +29,10 @@ class Product extends Model
      */
     protected function casts(): array
     {
-        return ['sizes' => AsEnumCollection::of(ProductSize::class)];
+        return [
+            'sizes' => AsEnumCollection::of(ProductSize::class),
+            'price' => 'float'
+        ];
     }
 
     public function images()
