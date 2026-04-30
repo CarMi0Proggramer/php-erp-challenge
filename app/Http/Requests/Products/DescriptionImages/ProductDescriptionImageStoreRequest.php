@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Products\Images;
+namespace App\Http\Requests\Products\DescriptionImages;
 
 use App\Concerns\ImageValidationRules;
 use Illuminate\Contracts\Validation\ValidationRule;

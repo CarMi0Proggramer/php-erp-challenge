@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Products\Images\ProductDescriptionImageStoreRequest;
+use App\Http\Requests\Products\DescriptionImages\ProductDescriptionImageStoreRequest;
 use App\Models\Product;
 use App\Models\ProductDescriptionImage;
 use Illuminate\Routing\Attributes\Controllers\Authorize;
