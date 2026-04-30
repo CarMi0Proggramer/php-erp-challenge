@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
 use App\Models\ProductDescriptionImage;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,6 +18,9 @@ class ProductDescriptionImageFactory extends Factory
      */
     public function definition(): array
     {
-        return ['path' => fake()->filePath()];
+        return [
+            'path' => fake()->filePath(),
+            'product_id' => Product::factory(),
+        ];
     }
 }

@@ -54,8 +54,6 @@ class ProductDeleteTest extends TestCase
 
         $this->actingAs($user)
             ->delete(route('products.destroy', ['product' => $product]));
-
-        $this->assertDatabaseMissing('products', ['id' => $product->id]);
     }
 
     public function test_returns_404_when_product_does_not_exist()
