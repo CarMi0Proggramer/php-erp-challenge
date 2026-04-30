@@ -23,7 +23,6 @@ class ProductUpdateRequest extends FormRequest
             'name' => $this->nameRules(),
             'description' => $this->descriptionRules(),
             'price' => $this->priceRules(),
-            'stock' => $this->stockRules(),
             'sku' => $this->skuRules($productId),
             ...$this->sizesRules(),
         ];

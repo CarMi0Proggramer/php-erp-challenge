@@ -21,7 +21,6 @@ class ProductStoreRequest extends FormRequest
             'name' => $this->nameRules(),
             'description' => $this->descriptionRules(),
             'price' => $this->priceRules(),
-            'stock' => $this->stockRules(),
             ...$this->sizesRules(),
         ];
     }

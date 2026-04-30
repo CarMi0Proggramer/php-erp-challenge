@@ -131,7 +131,12 @@ provide(ImageUploaderKey, editorImageUploader);
                     </div>
                 </div>
                 <div class="flex flex-col gap-6 sm:flex-row">
-                    <div class="grid w-full gap-2">
+                    <div
+                        :class="[
+                            'grid w-full gap-2',
+                            product ? 'w-full' : 'sm:w-1/2 sm:pe-3',
+                        ]"
+                    >
                         <Label for="price">Preço</Label>
                         <InputNumber
                             id="price"
@@ -145,25 +150,13 @@ provide(ImageUploaderKey, editorImageUploader);
                         <InputError :message="errors.price" />
                     </div>
 
-                    <div class="grid w-full gap-2">
-                        <Label for="stock">Estoque</Label>
-                        <InputNumber
-                            id="stock"
-                            name="stock"
-                            placeholder="Estoque"
-                            :tabindex="3"
-                            :default-value="product?.stock"
-                        />
-                        <InputError :message="errors.stock" />
-                    </div>
-
                     <div v-if="!!product" class="grid w-full gap-2">
-                        <Label for="stock">SKU</Label>
+                        <Label for="sku">SKU</Label>
                         <Input
                             id="sku"
                             name="sku"
                             placeholder="SKU"
-                            :tabindex="4"
+                            :tabindex="3"
                             :default-value="product?.sku"
                         />
                         <InputError :message="errors.sku" />

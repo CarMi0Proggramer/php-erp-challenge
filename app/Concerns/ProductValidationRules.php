@@ -35,11 +35,6 @@ trait ProductValidationRules
         return ['required', 'numeric', 'decimal:0,2', 'gt:0'];
     }
 
-    public function stockRules()
-    {
-        return ['required', 'integer', 'min:0'];
-    }
-
     public function sizesRules()
     {
         return [

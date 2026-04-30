@@ -59,7 +59,6 @@ class ProductCreateTest extends TestCase
         $user = User::factory()->create(['role' => $role->value]);
         $payload = [
             'name' => fake()->name(),
-            'stock' => fake()->numberBetween(0, 100),
             'price' => fake()->randomFloat(2, 1, 100),
             'sizes' => fake()->randomElements(ProductSize::cases()),
         ];
@@ -90,7 +89,7 @@ class ProductCreateTest extends TestCase
         $user = User::factory()->admin()->create();
 
         $response = $this->actingAs($user)->post(route('products.store'));
-        $response->assertSessionHasErrors(['name', 'stock', 'price']);
+        $response->assertSessionHasErrors(['name', 'price']);
     }
 
     public function test_cannot_create_product_with_invalid_data()
@@ -98,13 +97,12 @@ class ProductCreateTest extends TestCase
         $user = User::factory()->admin()->create();
         $payload = [
             'name' => '',
-            'stock' => -10,
             'price' => -5.99,
         ];
 
         $this->actingAs($user)
             ->post(route('products.store'), $payload)
-            ->assertSessionHasErrors(['name', 'stock', 'price']);
+            ->assertSessionHasErrors(['name', 'price']);
     }
 
     public function test_generates_correct_sku()
@@ -114,7 +112,6 @@ class ProductCreateTest extends TestCase
         $user = User::factory()->admin()->create();
         $payload = [
             'name' => 'Café',
-            'stock' => 10,
             'price' => 3.99,
         ];
 

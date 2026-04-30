@@ -60,7 +60,6 @@ class ProductUpdateTest extends TestCase
 
         $payload = [
             'name' => 'Updated Product Name',
-            'stock' => 50,
             'price' => 99.99,
             'sku' => 'ABC-12345',
         ];
@@ -71,7 +70,6 @@ class ProductUpdateTest extends TestCase
         $product->refresh();
 
         $this->assertEquals('Updated Product Name', $product->name);
-        $this->assertEquals(50, $product->stock);
         $this->assertEquals(99.99, $product->price);
         $this->assertEquals('ABC-12345', $product->sku);
 
@@ -103,7 +101,7 @@ class ProductUpdateTest extends TestCase
             )
         );
 
-        $response->assertSessionHasErrors(['name', 'stock', 'price', 'sku']);
+        $response->assertSessionHasErrors(['name', 'price', 'sku']);
     }
 
     public function test_cannot_update_product_with_invalid_data()
@@ -113,7 +111,6 @@ class ProductUpdateTest extends TestCase
 
         $payload = [
             'name' => '',
-            'stock' => -10,
             'price' => -5.99,
             'sku' => '',
         ];
@@ -121,7 +118,7 @@ class ProductUpdateTest extends TestCase
         $response = $this->actingAs($user)
             ->patch(route('products.update', ['product' => $product]), $payload);
 
-        $response->assertSessionHasErrors(['name', 'stock', 'price', 'sku']);
+        $response->assertSessionHasErrors(['name', 'price', 'sku']);
     }
 
     public function test_returns_404_when_product_does_not_exist()
