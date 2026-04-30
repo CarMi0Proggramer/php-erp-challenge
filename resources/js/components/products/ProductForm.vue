@@ -20,6 +20,7 @@ import { ImageUploaderKey, WysiwygEditor } from '@/components/wysiwyg';
 import type { ImageUploader } from '@/components/wysiwyg';
 import { ProductSize } from '@/lib/enums/product-size';
 import type { Product } from '@/types';
+import ProductImageGallery from './ProductImageGallery.vue';
 
 type Props = {
     product?: Product;
@@ -167,6 +168,9 @@ provide(ImageUploaderKey, editorImageUploader);
                         />
                         <InputError :message="errors.sku" />
                     </div>
+                </div>
+                <div v-if="!!product">
+                    <ProductImageGallery :product="product" />
                 </div>
             </div>
             <div v-if="!!product" class="flex-1">

@@ -15,5 +15,6 @@ export type ProductImage = {
     id: string;
     product_id: string;
     url: string;
+    path: string;
     is_primary: boolean;
 };

@@ -21,6 +21,7 @@ class ProductImageFactory extends Factory
         return [
             'product_id' => Product::factory(),
             'url' => $this->faker->imageUrl(),
+            'path' => $this->faker->filePath(),
             'is_primary' => $this->faker->boolean(),
         ];
     }

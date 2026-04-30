@@ -31,7 +31,7 @@ class Product extends Model
     {
         return [
             'sizes' => AsEnumCollection::of(ProductSize::class),
-            'price' => 'float'
+            'price' => 'float',
         ];
     }
 
