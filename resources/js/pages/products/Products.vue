@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { Head, Link, router } from '@inertiajs/vue3';
 import { Plus, SearchIcon } from 'lucide-vue-next';
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 import AppPagination from '@/components/AppPagination.vue';
 import InputNumber from '@/components/InputNumber.vue';
-import { ProductsTable } from '@/components/products';
+import { ProductsTable, ProductDeleteModal } from '@/components/products';
 import { Button } from '@/components/ui/button';
 import {
     InputGroup,
@@ -56,6 +56,8 @@ defineOptions({
     },
 });
 
+const selectedProduct = ref<Product>();
+const isProductDeleteModalOpen = ref<boolean>(false);
 const filters = reactive({
     ...props.filters,
     page: props.pagination.currentPage,
@@ -89,6 +91,11 @@ const updateSearchTerm = debounce((searchTerm: string) => {
 
 function handleEditProduct(product: Product) {
     router.get(productsRoutes.edit(product.id));
+}
+
+function handleDeleteProduct(product: Product) {
+    selectedProduct.value = product;
+    isProductDeleteModalOpen.value = true;
 }
 </script>
 <template>
@@ -206,11 +213,20 @@ function handleEditProduct(product: Product) {
                 <Button class="w-40"><Plus /> Criar Produto</Button>
             </Link>
         </div>
-        <ProductsTable :products="products" @edit="handleEditProduct" />
+        <ProductsTable
+            :products="products"
+            @edit="handleEditProduct"
+            @delete="handleDeleteProduct"
+        />
         <AppPagination
             className="my-4 justify-center md:justify-end"
             :pagination="pagination"
             @update:page="filters.page = $event"
         />
     </div>
+    <ProductDeleteModal
+        v-if="selectedProduct"
+        v-model:is-open="isProductDeleteModalOpen"
+        :product="selectedProduct"
+    />
 </template>
