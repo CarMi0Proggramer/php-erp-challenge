@@ -97,6 +97,10 @@ function handleDeleteProduct(product: Product) {
     selectedProduct.value = product;
     isProductDeleteModalOpen.value = true;
 }
+
+function handleManageProductStock(product: Product) {
+    router.get(productsRoutes.stock(product.id));
+}
 </script>
 <template>
     <Head title="Products" />
@@ -217,6 +221,7 @@ function handleDeleteProduct(product: Product) {
             :products="products"
             @edit="handleEditProduct"
             @delete="handleDeleteProduct"
+            @manage-stock="handleManageProductStock"
         />
         <AppPagination
             className="my-4 justify-center md:justify-end"

@@ -44,8 +44,19 @@ class Product extends Model
         return $this->hasMany(ProductImage::class);
     }
 
+    public function primaryImage()
+    {
+        return $this->hasOne(ProductImage::class)
+            ->where('is_primary', true);
+    }
+
     public function descriptionImages()
     {
         return $this->hasMany(ProductDescriptionImage::class);
+    }
+
+    public function stockMovements()
+    {
+        return $this->hasMany(StockMovement::class);
     }
 }

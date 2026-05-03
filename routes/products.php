@@ -4,28 +4,40 @@ use App\Enums\Role;
 use App\Http\Controllers\Products\ProductDescriptionImageController;
 use App\Http\Controllers\Products\ProductImageController;
 use App\Http\Controllers\Products\ProductsController;
+use App\Http\Controllers\Products\StockMovementController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('products', ProductsController::class)
+        ->except('show')
         ->name('index', 'products')
         ->middlewareFor(['index', 'create', 'edit'], 'role:'.implode(',', [
             Role::ADMIN->value,
             Role::OPERATOR->value,
         ]));
 
-    Route::prefix('products')->group(function () {
+    Route::prefix('products/{product}')->group(function () {
         Route::apiResource(
-            '{product}/description-images',
+            'description-images',
             ProductDescriptionImageController::class
         )->except(['index', 'update', 'show']);
 
-        Route::apiResource('{product}/images', ProductImageController::class)
+        Route::apiResource('images', ProductImageController::class)
             ->except(['index', 'update', 'show']);
 
-        Route::post('{product}/images/{image}/primary', [
+        Route::post('images/{image}/primary', [
             ProductImageController::class,
             'markAsPrimary',
         ])->name('images.primary');
+
+        Route::get('stock', [StockMovementController::class, 'index'])
+            ->name('products.stock')
+            ->middleware('role:'.implode(',', [
+                Role::ADMIN->value,
+                Role::OPERATOR->value,
+            ]));
+
+        Route::apiResource('stock-movements', StockMovementController::class)
+            ->except(['index', 'show']);
     });
 });

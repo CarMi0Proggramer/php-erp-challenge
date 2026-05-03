@@ -12,6 +12,7 @@ type Props = {
     id?: string;
     label?: string;
     placeholder?: string;
+    name?: string;
 };
 
 type Emits = {
@@ -33,7 +34,7 @@ defineModel<number>();
         <Label :for="id" v-if="label">{{ label }}</Label>
         <NumberFieldContent>
             <NumberFieldDecrement />
-            <NumberFieldInput :placeholder="placeholder" />
+            <NumberFieldInput :placeholder="placeholder" :name="name" />
             <NumberFieldIncrement />
         </NumberFieldContent>
     </NumberField>

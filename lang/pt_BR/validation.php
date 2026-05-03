@@ -186,5 +186,9 @@ return [
         'stock' => 'estoque',
         'description' => 'descrição',
         'sizes' => 'tamanhos',
+        'reason' => 'motivo',
+        'quantity' => 'quantidade',
+        'balance' => 'saldo final',
+        'type' => 'tipo',
     ],
 ];

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Pencil, Trash2 } from 'lucide-vue-next';
+import { Pencil, Trash2, Package } from 'lucide-vue-next';
 import { Button } from '@/components/ui/button';
 import {
     Table,
@@ -18,6 +18,7 @@ type Props = {
 type Emits = {
     (event: 'edit', product: Product): void;
     (event: 'delete', product: Product): void;
+    (event: 'manage-stock', product: Product): void;
 };
 
 defineProps<Props>();
@@ -50,12 +51,20 @@ defineEmits<Emits>();
             <TableRow v-for="product in products" :key="product.id">
                 <TableCell class="font-medium">{{ product.name }}</TableCell>
                 <TableCell>{{ product.sku }}</TableCell>
-                <TableCell>{{ product.price }}</TableCell>
+                <TableCell>R$ {{ product.price }}</TableCell>
                 <TableCell>{{ product.stock }}</TableCell>
                 <TableCell>
                     {{ product.sizes ? product.sizes.join(', ') : 'N/A' }}
                 </TableCell>
                 <TableCell class="space-x-2 text-right">
+                    <Button
+                        size="icon"
+                        variant="outline"
+                        @click="$emit('manage-stock', product)"
+                    >
+                        <Package />
+                    </Button>
+
                     <Button
                         size="icon"
                         variant="outline"
