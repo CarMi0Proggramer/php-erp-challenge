@@ -37,7 +37,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
                 Role::OPERATOR->value,
             ]));
 
-        Route::apiResource('stock-movements', StockMovementController::class)
-            ->except(['index', 'show']);
+        Route::post('stock-movements', [StockMovementController::class, 'store'])
+            ->name('products.stock.store');
     });
 });

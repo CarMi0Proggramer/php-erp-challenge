@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Products;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Products\Stock\StockMovementStoreRequest;
 use App\Models\Product;
+use App\Models\StockMovement;
 use App\Services\StockMovementService;
+use Illuminate\Routing\Attributes\Controllers\Authorize;
 use Inertia\Inertia;
 
 class StockMovementController extends Controller
@@ -33,6 +35,7 @@ class StockMovementController extends Controller
         ]);
     }
 
+    #[Authorize('create', StockMovement::class)]
     public function store(StockMovementStoreRequest $request, Product $product)
     {
         $user = $request->user();

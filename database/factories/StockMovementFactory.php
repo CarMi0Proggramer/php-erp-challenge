@@ -25,7 +25,9 @@ class StockMovementFactory extends Factory
             'user_id' => User::factory(),
             'reason' => $this->faker->sentence(),
             'quantity' => $this->faker->numberBetween(1, 100),
-            'type' => $this->faker->randomElements(
+            'stock_before' => $this->faker->numberBetween(1, 100),
+            'stock_balance' => $this->faker->numberBetween(1, 100),
+            'type' => $this->faker->randomElement(
                 [
                     StockMovementType::ADJUSTMENT->value,
                     StockMovementType::SALE->value,
